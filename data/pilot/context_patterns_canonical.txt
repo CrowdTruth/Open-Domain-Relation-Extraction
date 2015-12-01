@@ -1,0 +1,85 @@
+# Canonical patterns for each relation.
+
+per:alternate_names $ARG1 is also known as $ARG2
+
+per:date_of_birth $ARG1 was born $ARG2
+
+per:age $ARG1 is $ARG2 years old
+
+per:country_of_birth $ARG1 was born in $ARG2
+
+per:stateorprovince_of_birth $ARG1 was born in $ARG2
+
+per:city_of_birth $ARG1 was born in $ARG2
+
+per:origin $ARG1 is from $ARG2
+
+per:date_of_death $ARG1 passed away $ARG2
+
+per:country_of_death $ARG1 died in $ARG2
+
+per:stateorprovince_of_death $ARG1 died in $ARG2
+
+per:city_of_death $ARG1 died in $ARG2
+
+per:cause_of_death $ARG1 died of $ARG2
+
+per:countries_of_residence $ARG1 lived in $ARG2
+
+per:statesorprovinces_of_residence $ARG1 lived in $ARG2
+
+per:cities_of_residence $ARG1 lived in $ARG2
+
+per:schools_attended $ARG1 was a student at $ARG2
+
+per:title $ARG1 is a $ARG2
+
+per:member_of $ARG1 is a member of $ARG2
+
+per:employee_or_member_of $ARG1 works for $ARG2
+
+per:religion $ARG1 's religion is $ARG2
+
+per:spouse $ARG1 is married to $ARG2
+
+per:children $ARG2 is the child of $ARG1
+
+per:parents $ARG1 is the child of $ARG2
+
+per:siblings $ARG0 is a sibling of $ARG0
+
+per:other_family $ARG0 is a relative of $ARG0
+
+per:charges $ARG1 was accused of $ARG2
+
+org:alternate_names $ARG1 is also known as $ARG2
+
+org:political_religious_affiliation $ARG1 is affiliated with $ARG2
+
+org:top_members_employees $ARG1 is an executive at $ARG2
+
+org:number_of_employees_members $ARG1 has $ARG2 members
+
+org:members $ARG2 is a member organization of $ARG1
+
+org:member_of $ARG1 is a member organization of $ARG2
+
+org:subsidiaries $ARG2 is a subsidiary of $ARG1
+
+org:parents $ARG1 is a subsidiary of $ARG2
+
+org:founded_by $ARG1 was founded by $ARG2
+
+org:date_founded $ARG1 was founded $ARG2
+
+org:date_dissolved $ARG1 existed until $ARG2
+
+org:country_of_headquarters $ARG1 is headquartered in $ARG2
+
+org:stateorprovince_of_headquarters $ARG1 is headquartered in $ARG2
+
+org:city_of_headquarters $ARG1 is headquartered in $ARG2
+
+org:shareholders $ARG2 owns shares in $ARG1
+
+org:website the website of $ARG1 is $ARG2
