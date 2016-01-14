@@ -1,0 +1,80 @@
+<p>In this sentence:</p>
+<fieldset>
+  <p class="word_split">
+    <strong>
+      <em></em>
+    </strong>{{sentence}}  
+    
+    
+    
+    
+    
+    
+    
+    <strong>
+      <em></em>
+    </strong>
+  </p>
+</fieldset>
+<br/>
+<p>Is 
+  
+  
+  
+  
+  
+  
+  
+  <span class="seed_term">&#160;
+  {{term1}}</span>&#160;
+  
+  
+  
+  
+  
+  
+  
+  <em>----related-to----&#160;</em>
+  <span class="seed_term">&#160;
+  {{term2}}</span>?
+</p>
+<cml:checkboxes label="STEP 1: Select the valid RELATION(S)" instructions="It is important that you understand what the different relations mean. Carefully read the EXAMPLE by hovering over each relation." validates="required" aggregation="avg" strict="true" class="cboxparent" name="rellist">
+  <cml:checkbox label="&lt;b>&lt;b>{{term1}}&lt;/b>&lt;/b> is an organization with the alternate name &lt;b>{{term2}}&lt;/b>" value="org:alternate_names" title="Example sentence: GOOGLE's first patent was filed under the name GOOGLE INC."/>
+  <cml:checkbox label="headquarters of &lt;b>{{term1}}&lt;/b> are located in &lt;b>{{term2}}&lt;/b>" value="org:place_of_headquarters" title="Example sentence: LORD KRISHNA BANK was a private sector bank based in KODUNGALLUR." />
+  <cml:checkbox class="cbox" label="&lt;b>{{term2}}&lt;/b> is a subsidiary of &lt;b>{{term1}}&lt;/b>" value="org:subsidiaries" title="Example sentence: THE FOUR POLICEMEN was an executive branch of the UNITED NATIONS." />
+  <cml:checkbox label="&lt;b>{{term2}}&lt;/b> is the leader of &lt;b>{{term1}}&lt;/b>" value="per:employee_or_member_of" title="Example sentence: MILTON replaced Keynes as the head of AMAZON INC." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is founded by &lt;b>{{term2}}&lt;/b>" value="org:founded_by" title="Example sentence: ZUCKERBERG started FACEBOOK in his dorm room at Harvard." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a member/employee of &lt;b>{{term2}}&lt;/b>" value="org:top_members_employees" title="Example sentence: CAROL began her career at AMAZON INC. in 2011." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person with the alternate name &lt;b>{{term2}}&lt;/b>" value="per:alternate_names" title="Example sentence: DWAYNE JOHNSON became famous as THE ROCK." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> died because of &lt;b>{{term2}}&lt;/b>" value="per:cause_of_death" title="Example sentence: KRUSTY passed away after a long battle with CANCER." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is charged with &lt;b>{{term2}}&lt;/b>" value="per:charges" title="Example sentence: MEDFORD was sentenced for 10 counts of ASSAULT." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is the father/mother of &lt;b>{{term2}}&lt;/b>" value="per:children" title="Example sentence: AMADEO, the father of WOLFGANG, also served as his teacher." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person who lives in &lt;b>{{term2}}&lt;/b>" value="per:places_of_residence" title="Example sentence: KURT temporarily relocated to CALIFORNIA." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person who is born in &lt;b>{{term2}}&lt;/b>" value="per:place_of_birth" title="Example sentence: STEWART was born at St Jude's hospital in LONDON." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person who died in &lt;b>{{term2}}&lt;/b>" value="per:place_of_death" title="Example sentence: DUNCAN passed away in a car accident while driving in SAINT TROPEZ." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> attended school(s) &lt;b>{{term2}}&lt;/b>" value="per:schools_attended" title="Example sentence: At age 15, SANDERSON is HARVARD's youngest alumna." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person originating from &lt;b>{{term2}}&lt;/b>" value="per:origin" title="Example sentence: HILLBERT is a MICHIGAN native." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is married to &lt;b>{{term2}}&lt;/b>" value="per:spouse" title="Example sentence: SARKOZY and his spouse, international model CARLA BRUNI, also attended the private ceremony." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person with the title of &lt;b>{{term2}}&lt;/b>" value="per:title" title="Example sentence: JOHNSON is the LEADER of the project." />
+  <cml:checkbox label="&lt;b>{{term1}}&lt;/b> is a person aged &lt;b>{{term2}}&lt;/b>" value="per:age" title="Example sentence: CARTER joined the organization shortly after turning 35." />
+  <cml:checkbox label="&lt;i>none of these&lt;i>" value="NONE" title="" />
+</cml:checkboxes>
+<div style="clear:both;"></div>
+<cml:hidden label="Selected relations" class="relations" name="relations" validates="required" />
+<cml:text label="STEP 2a: Highlight in the sentence ONLY the words that relate to the RELATION(S) you selected in STEP1" class="highlightWords" name="step_2a_copy__paste_only_the_words_from_the_sentence_that_express_the_relation_you_selected_in_step1" instructions="Highlight ONLY the words that relate to the RELATION(S) you have selected in STEP1. DO NOT copy the whole sentence." only-if="!rellist:[NONE]" validates="required" />
+<cml:textarea label="STEP 2b: If you selected NONE OF THESE in STEP 1, explain why" class="others"
+name = "step_2b_if_you_selected_none_in_step_1_explain_why"              
+instructions="If you think there is a relation between those two words, but it is different than any of the relations in STEP 1, then type the relation here. If you think there is no relation between those terms, explain why do you think it is."  default="" only-if="rellist:[NONE]" validates="required" />
+<cml:hidden name="factor1" value="{{term1}}" />
+<cml:hidden name="b1val" value="{{b1}}" />
+<cml:hidden name="e1val" value="{{e1}}" />
+<cml:hidden name="factor2" value="{{term2}}" />
+<cml:hidden name="b2val" value="{{b2}}" />
+<cml:hidden name="e2val" value="{{e2}}" />
+
+
+
+
+
+
+
