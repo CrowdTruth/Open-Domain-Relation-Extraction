@@ -1,4 +1,4 @@
-input_folder <- "/home/anca/Documents/Open-Domain-Relation-Extraction/data/pilot/baseline2/"
+input_folder <- "/home/anca/Documents/Open-Domain-Relation-Extraction/data/pilot/baseline/"
 baseline_file <-  "/home/anca/Documents/Open-Domain-Relation-Extraction/data/pilot/test_1.csv"
 
 require(lsa)
