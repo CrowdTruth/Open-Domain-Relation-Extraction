@@ -1,4 +1,4 @@
-relations <- c("per:title",
+crowd_rels <- c("per:title",
                "org:founded_by",
                "per:place_of_birth",
                "per:children",
