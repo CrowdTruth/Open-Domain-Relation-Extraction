@@ -16,28 +16,11 @@ term_overlap <- function(b1, e1, b2, e2) {
 
 ##### initialize #####
 
-unannotated_data <- read.csv("../data/tac-distant-supervision.subset", header = F, sep = "\t",
+unannotated_data <- read.csv("../data/unannotated/tac-distant-supervision.subset", header = T, sep = "\t",
                             dec = ".", fill = TRUE, stringsAsFactors=FALSE)
 
-relations <- unique(unannotated_data$V2)
-
-crowd_data <- read.csv("../crowdsourcing/output/sent-vec.csv")
-unannotated_data <- unannotated_data[! unannotated_data$V9 %in% crowd_data$sentence, ]
-
-library(plyr)
-unannotated_data <- rename(unannotated_data, c(
-  "V1" = "term1",
-  "V2" = "relation",
-  "V3" = "term2",
-  "V4" = "sent_id",
-  "V5" = "b1",
-  "V6" = "e1",
-  "V7" = "b2",
-  "V8" = "e2",
-  "V9" = "sentence"))
-
-# ambig_data <- trim_sent_set(unannotated_data)
-ambig_data <- unannotated_data
+relations <- unique(unannotated_data$relation)
+ambig_data <- trim_sent_set(unannotated_data)
 
 
 ##### rename relations #####
@@ -57,12 +40,9 @@ for (idx in 1:length(ambig_data[, 1])) {
     }
   }
   
-  if (ambig_data$relation[idx] == "per:parents" ||
+  if (ambig_data$relation[idx] == "per:children" ||
       ambig_data$relation[idx] == "org:members" ||
-      ambig_data$relation[idx] == "org:parents" ||
-      ambig_data$relation[idx] == "org:member_of" ||
-      ambig_data$relation[idx] == "org:top_members_employees" ||
-      ambig_data$relation[idx] == "org:founded_by") {
+      ambig_data$relation[idx] == "org:parents") {
     aux <- ambig_data$term1[idx]
     ambig_data$term1[idx] <- ambig_data$term2[idx]
     ambig_data$term2[idx] <- aux
@@ -75,18 +55,15 @@ for (idx in 1:length(ambig_data[, 1])) {
     ambig_data$e1[idx] <- ambig_data$e2[idx]
     ambig_data$e2[idx] <- aux
     
-    if (ambig_data$relation[idx] == "per:parents") ambig_data$relation[idx] <- "per:children"
+    if (ambig_data$relation[idx] == "per:children") ambig_data$relation[idx] <- "per:parents"
     if (ambig_data$relation[idx] == "org:members") ambig_data$relation[idx] <- "org:member_of"
     if (ambig_data$relation[idx] == "org:parents") ambig_data$relation[idx] <- "org:subsidiaries"
-    if (ambig_data$relation[idx] == "org:member_of") ambig_data$relation[idx] <- "per:employee_or_member_of"
-    if (ambig_data$relation[idx] == "org:top_members_employees") ambig_data$relation[idx] <- "per:top_member_employee_of_org"
-    if (ambig_data$relation[idx] == "org:founded_by") ambig_data$relation[idx] <- "per:founded_org"
     
   }
 }
 
 ambig_data <- ambig_data[!duplicated(ambig_data), ]
-# ambig_data <- trim_sent_set(ambig_data)
+ambig_data <- trim_sent_set(ambig_data)
 ambig_data_all_terms <- ambig_data
 
 
@@ -144,7 +121,7 @@ for (idx in 1:length(ambig_data[, 1])) {
 test <- ambig_data[sim_sent_ids, ]
 
 ambig_data <- ambig_data[setdiff(1:length(ambig_data[, 1]), sim_sent_ids), ]
-# ambig_data <- trim_sent_set(ambig_data)
+ambig_data <- trim_sent_set(ambig_data)
 
 
 ##### keep most complete terms ####
@@ -191,46 +168,9 @@ for (idx in 1:length(ambig_data[, 1])) {
 test <- ambig_data[sim_sent_ids, ]
 
 ambig_data <- ambig_data[setdiff(1:length(ambig_data[, 1]), sim_sent_ids), ]
-# ambig_data <- trim_sent_set(ambig_data)
+ambig_data <- trim_sent_set(ambig_data)
 
 relations <- unique(ambig_data$relation)
-
-
-##### flatten rel list ####
-
-ambig_data <- ambig_data[order(ambig_data$sentence, ambig_data$term1, ambig_data$term2), ]
-sentences <- unique(ambig_data$sentence)
-comb_data <- data.frame(stringsAsFactors = F)
-
-idx <- 1
-rels <- ambig_data$relation[idx]
-ambig_data$baseline <- 0
-
-while (idx < length(ambig_data[,1 ])) {
-  idx <- idx + 1
-  
-  if ((ambig_data$term1[idx] == ambig_data$term1[idx - 1]) &&
-      (ambig_data$term2[idx] == ambig_data$term2[idx - 1]) &&
-      (ambig_data$sentence[idx] == ambig_data$sentence[idx - 1])) {
-      if (!grepl(ambig_data$relation[idx], rels)) rels <- paste(rels, ambig_data$relation[idx], sep = ";")
-  }
-  
-  else {
-    ambig_data$relation[idx - 1] <- rels
-    ambig_data$baseline[idx - 1] <- 1
-    rels <- ambig_data$relation[idx]
-  }
-  
-  if (idx %% 1000 == 0) print(paste("Sentence", idx, "..."))
-}
-ambig_data$relation[length(ambig_data$relation)] <- rels
-
-
-#### replace extra rels with none ####
-
-source("relations.R")
-all_relations <- unique(unlist(strsplit(ambig_data$relation, ";")))
-none_relations <- setdiff(all_relations, relations)
 
 
 #### rel overlap ####
@@ -279,7 +219,7 @@ source("relations.R")
 
 multi_rel_data <- ambig_data[multi_rel_sents, ]
 multi_rel_data <- multi_rel_data[multi_rel_data$relation %in% crowd_rels, ]
-# multi_rel_data <- trim_sent_set(multi_rel_data)
+multi_rel_data <- trim_sent_set(multi_rel_data)
 
 unambig_rels <- setdiff(crowd_rels, unique(multi_rel_data$relation))
 

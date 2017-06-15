@@ -19,5 +19,3 @@ relations <- c("per:title",
                "per:origin",
                "per:places_of_residence",
                "none")
-
-relations_fixed <- gsub(":", ".", relations)
