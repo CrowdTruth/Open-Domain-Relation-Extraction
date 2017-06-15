@@ -9,3 +9,6 @@ Sentence-level data is available in file:
 
 Worker-level data is available in file:
 ``` |--data/crowdsourcing/work-vec.csv ```
+
+Raw crowdsourcig data is available in folder:
+``` |--data/crowdsourcing/input/ ```
