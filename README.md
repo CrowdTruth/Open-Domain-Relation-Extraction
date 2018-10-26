@@ -1,5 +1,7 @@
 # CrowdTruth Corpus for Open Domain Relation Extraction from Sentences
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1472330.svg)](https://doi.org/10.5281/zenodo.1472330)
+
 This repository contains a ground truth corpus for open domain relation extraction from sentences, acquired with crowdsourcing and processed with **[CrowdTruth](http://crowdtruth.org/)** metrics that capture ambiguity in annotations by measuring inter-annotator disagreement.
 
 The dataset contains annotations for 4,100 sentences sampled from Angeli et al. (1) and Riedel et al. (2), over 16 relations, with each sentence annotated by 15 workers. The sentences have been pre-processed with Distant Supervision (3) using the Freebase knowledge base, in order to identify the term pairs in each sentence that are likely to express a relation. The crowdsourced data was collected from [Figure Eight](http://figure-eight.com/) and [Amazon Mechanical Turk](https://mturk.com/).
