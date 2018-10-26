@@ -1,4 +1,4 @@
-# CrowdTruth Corpus for Open Domain Relation Extraction
+# CrowdTruth Corpus for Open Domain Relation Extraction from Sentences
 
 This repository contains a ground truth corpus for open domain relation extraction from sentences, acquired with crowdsourcing and processed with **[CrowdTruth](http://crowdtruth.org/)** metrics that capture ambiguity in annotations by measuring inter-annotator disagreement.
 
