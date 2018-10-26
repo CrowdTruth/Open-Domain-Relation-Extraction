@@ -1,0 +1,27 @@
+batch_size: 1000
+classes:
+- org:alternate_names
+- org:place_of_headquarters
+- org:subsidiaries
+- per:cause_of_death
+- per:charges
+- per:children
+- per:employee_or_member_of
+- per:founded_org
+- per:origin
+- per:place_of_birth
+- per:place_of_death
+- per:places_of_residence
+- per:schools_attended
+- per:spouse
+- per:title
+- per:top_member_employee_of_org
+embedding_length: 400
+input_file: /var/scratch/mde430/data/input/csv/trainDS+W2V_16rels/Crowd_test.csv
+posembed_length: 99
+relation: multi
+sequence_length: 50
+vector_size: 300
+vocabulary_length: 202027
+w2v_path: /var/scratch/mde430/GoogleNews-vectors-negative300.bin.gz
+wposition_size: 50
